@@ -1,0 +1,23 @@
+
+server:
+  port: 8089
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:5001/eureka/
+spring:
+  application:
+    name: gateway
+
+zuul:
+  sensitive-headers:
+  prefix: /api
+  strip-prefix: true
+  routes:
+     api-produce:
+          path: /**
+          serviceId: produce
+          strip-prefix: false
+          ribbon:
+            ReadTimeout: 30000
+            ConnectTimeout: 30000
